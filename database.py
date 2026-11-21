@@ -19,7 +19,6 @@ def authorize_user(login, password):
                 (login, password),
             )
             row = cursor.fetchone()
-
         if row is None:
             return None
 

@@ -1,10 +1,7 @@
 import tkinter as tk
 from tkinter import ttk, messagebox
-
 import psycopg2
-
 from database import authorize_user
-
 
 class Application:
     def __init__(self, root):
@@ -12,26 +9,21 @@ class Application:
         self.root.title("Warehouse")
         self.root.geometry("1000x650")
         self.root.minsize(750, 500)
-
         self.login_entry = None
         self.password_entry = None
-
         self.configure_style()
         self.show_login()
-
     def configure_style(self):
         style = ttk.Style()
         try:
             style.theme_use("clam")
         except tk.TclError:
             pass
-
         style.configure("Treeview", rowheight=28, font=("Arial", 10))
         style.configure(
             "Treeview.Heading",
             font=("Arial", 10, "bold"),
         )
-
     def clear_window(self):
         for widget in self.root.winfo_children():
             widget.destroy()
@@ -62,7 +54,6 @@ class Application:
             show="*",
         )
         self.password_entry.pack(pady=(5, 20))
-
         ttk.Button(
             container,
             text="Авторизация",
@@ -77,11 +68,9 @@ class Application:
 
         self.login_entry.focus_set()
         self.root.bind("<Return>", self.on_enter)
-
     def on_enter(self, _event):
         if self.login_entry is not None:
             self.login()
-
     def login(self):
         login = self.login_entry.get().strip()
         password = self.password_entry.get()
@@ -101,7 +90,6 @@ class Application:
                 f"Не удалось выполнить авторизацию.\n\n{error}",
             )
             return
-
         if user is None:
             messagebox.showerror(
                 "Ошибка авторизации",
@@ -136,16 +124,12 @@ class Application:
             padding=15,
         )
         info.pack(fill="x", padx=20, pady=(0, 15))
-
         details = ttk.Frame(info)
         details.pack(fill="x")
-
         self.add_user_detail(details, "Имя", user["name"], 0)
         self.add_user_detail(details, "Возраст", user["age"], 1)
         self.add_user_detail(details, "Почта", user["email"], 2)
-
         self.create_products_table()
-
     def add_user_detail(self, parent, title, value, column):
         item = ttk.Frame(parent)
         item.grid(row=0, column=column, sticky="w", padx=(0, 35))
@@ -162,7 +146,6 @@ class Application:
     def show_guest(self):
         self.clear_window()
         self.root.unbind("<Return>")
-
         header = ttk.Frame(self.root, padding=(20, 18))
         header.pack(fill="x")
 
@@ -192,7 +175,6 @@ class Application:
             columns=columns,
             show="headings",
         )
-
         headings = {
             "id": "ID",
             "name": "Название товара",
@@ -208,7 +190,6 @@ class Application:
             "price": 130,
             "quantity": 130,
         }
-
         for column in columns:
             self.products_table.heading(column, text=headings[column])
             self.products_table.column(
@@ -216,7 +197,6 @@ class Application:
                 width=widths[column],
                 anchor="center" if column != "name" else "w",
             )
-
         scrollbar = ttk.Scrollbar(
             table_frame,
             orient="vertical",
