@@ -140,7 +140,7 @@ class Application:
             command=self.show_login,
         ).pack(anchor="e", padx=25, pady=15)
 
-    #заглушка
+    #товары
     def create_feed_placeholder(self):
         feed = ttk.LabelFrame(
             self.root,
