@@ -9,8 +9,8 @@ from database import authorize_user
 class Application:
     def __init__(self, root):
         self.root = root
-        self.root.title("Лента товаров")
-        self.root.geometry("900x600")
+        self.root.title("App")
+        self.root.geometry("1920x1080")
         self.root.minsize(650, 450)
         self.login_entry = None
         self.password_entry = None
@@ -22,10 +22,8 @@ class Application:
             style.theme_use("clam")
         except tk.TclError:
             pass
-
         style.configure("TButton", padding=8)
         style.configure("TLabel", font=("Arial", 11))
-
     def clear_window(self):
         for widget in self.root.winfo_children():
             widget.destroy()
@@ -84,7 +82,7 @@ class Application:
         except psycopg2.Error as error:
             messagebox.showerror(
                 "Ошибка PostgreSQL",
-                f"Не удалось подключиться к базе данных или выполнить запрос.\n\n{error}",
+                f"ошибка\n\n{error}",
             )
             return
 
