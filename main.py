@@ -36,7 +36,7 @@ class Application:
         for widget in self.root.winfo_children():
             widget.destroy()
 
-    # -------------------- Окно входа --------------------
+    #вход
 
     def show_login(self):
         self.clear_window()
@@ -111,8 +111,6 @@ class Application:
 
         self.show_user(user)
 
-    # -------------------- Личный кабинет --------------------
-
     def show_user(self, user):
         self.clear_window()
         self.root.unbind("<Return>")
@@ -159,7 +157,7 @@ class Application:
             font=("Arial", 11, "bold"),
         ).pack(anchor="w", pady=(3, 0))
 
-    # -------------------- Гостевой режим --------------------
+    #гость
 
     def show_guest(self):
         self.clear_window()
@@ -181,8 +179,7 @@ class Application:
         ).pack(side="right")
 
         self.create_products_table()
-
-    # -------------------- Таблица товаров --------------------
+    #таблица
 
     def create_products_table(self):
         table_frame = ttk.Frame(self.root, padding=(20, 5, 20, 20))

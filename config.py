@@ -1,6 +1,3 @@
-# Настройки подключения к PostgreSQL.
-# Укажи пароль пользователя PostgreSQL, созданный при установке сервера.
-
 DB_CONFIG = {
     "host": "localhost",
     "database": "form",

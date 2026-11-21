@@ -3,7 +3,7 @@ from config import DB_CONFIG
 
 
 def connect_db():
-    return psycopg2.connect(DB_CONFIG)
+    return psycopg2.connect(**DB_CONFIG)
 
 
 def authorize_user(login, password):
