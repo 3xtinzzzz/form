@@ -1,21 +1,13 @@
 import psycopg2
-
 from config import DB_CONFIG
 
 
 def connect_db():
-    """Создаёт подключение к PostgreSQL."""
-    return psycopg2.connect(**DB_CONFIG)
+    return psycopg2.connect(DB_CONFIG)
 
 
 def authorize_user(login, password):
-    """
-    Проверяет логин и пароль в таблице users.
-    Возвращает словарь с данными пользователя или None,
-    если пользователь не найден либо пароль неверный.
-    """
     connection = connect_db()
-
     try:
         with connection.cursor() as cursor:
             cursor.execute(

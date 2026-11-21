@@ -230,8 +230,6 @@ class Application:
         self.products_table.pack(side="left", fill="both", expand=True)
         scrollbar.pack(side="right", fill="y")
 
-        # Таблица пока пустая. Позже добавим загрузку товаров из PostgreSQL.
-
 
 if __name__ == "__main__":
     root = tk.Tk()

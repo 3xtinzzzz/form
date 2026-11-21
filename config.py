@@ -3,8 +3,8 @@
 
 DB_CONFIG = {
     "host": "localhost",
-    "database": "warehouse_db",
+    "database": "form",
     "user": "postgres",
-    "password": "YOUR_POSTGRES_PASSWORD",
+    "password": "rip228nik37",
     "port": 5432,
 }
