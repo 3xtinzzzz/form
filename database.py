@@ -4,17 +4,10 @@ from config import DB_CONFIG
 
 
 def connect_db():
-    """Создаёт подключение к PostgreSQL."""
     return psycopg2.connect(**DB_CONFIG)
 
-
 def authorize_user(username, password):
-    """
-    Ищет пользователя по логину и паролю.
-    Возвращает данные пользователя или None, если совпадение не найдено.
-    """
     connection = connect_db()
-
     try:
         with connection.cursor() as cursor:
             cursor.execute(
@@ -29,7 +22,6 @@ def authorize_user(username, password):
 
         if row is None:
             return None
-
         return {
             "id": row[0],
             "role": row[1],

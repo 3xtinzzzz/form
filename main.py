@@ -12,13 +12,10 @@ class Application:
         self.root.title("Лента товаров")
         self.root.geometry("900x600")
         self.root.minsize(650, 450)
-
         self.login_entry = None
         self.password_entry = None
-
         self.configure_style()
         self.show_login()
-
     def configure_style(self):
         style = ttk.Style()
         try:
@@ -32,21 +29,17 @@ class Application:
     def clear_window(self):
         for widget in self.root.winfo_children():
             widget.destroy()
-
-    # -------------------- Авторизация --------------------
-
+            
+    #авторизация
     def show_login(self):
         self.clear_window()
-
         container = ttk.Frame(self.root, padding=30)
         container.place(relx=0.5, rely=0.5, anchor="center")
-
         ttk.Label(
             container,
             text="Авторизация",
             font=("Arial", 22, "bold"),
         ).pack(pady=(0, 25))
-
         ttk.Label(container, text="Логин").pack(anchor="w")
         self.login_entry = ttk.Entry(container, width=32, font=("Arial", 12))
         self.login_entry.pack(pady=(5, 15))
@@ -59,7 +52,6 @@ class Application:
             show="*",
         )
         self.password_entry.pack(pady=(5, 20))
-
         ttk.Button(
             container,
             text="Войти",
@@ -74,15 +66,12 @@ class Application:
 
         self.login_entry.focus_set()
         self.root.bind("<Return>", self.on_enter)
-
     def on_enter(self, _event):
         if self.login_entry is not None:
             self.login()
-
     def login(self):
         username = self.login_entry.get().strip()
         password = self.password_entry.get()
-
         if not username or not password:
             messagebox.showwarning(
                 "Пустые поля",
@@ -105,10 +94,7 @@ class Application:
                 "Неверный логин или пароль.",
             )
             return
-
         self.show_user(user)
-
-    # -------------------- Лента авторизованного пользователя --------------------
 
     def show_user(self, user):
         self.clear_window()
@@ -136,22 +122,18 @@ class Application:
             text="Выйти",
             command=self.show_login,
         ).pack(anchor="e", padx=25, pady=15)
-
-    # -------------------- Гостевой режим --------------------
-
+        
+    #гость
     def show_guest(self):
         self.clear_window()
         self.root.unbind("<Return>")
-
         header = ttk.Frame(self.root, padding=(25, 20))
         header.pack(fill="x")
-
         ttk.Label(
             header,
             text="Гостевой режим",
             font=("Arial", 20, "bold"),
         ).pack(anchor="w")
-
         self.create_feed_placeholder()
 
         ttk.Button(
@@ -160,8 +142,7 @@ class Application:
             command=self.show_login,
         ).pack(anchor="e", padx=25, pady=15)
 
-    # -------------------- Заглушка ленты товаров --------------------
-
+    #заглушка
     def create_feed_placeholder(self):
         feed = ttk.LabelFrame(
             self.root,
@@ -176,8 +157,6 @@ class Application:
             font=("Arial", 16),
             foreground="gray",
         ).place(relx=0.5, rely=0.5, anchor="center")
-
-
 if __name__ == "__main__":
     root = tk.Tk()
     app = Application(root)
