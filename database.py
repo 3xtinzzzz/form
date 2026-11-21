@@ -8,6 +8,7 @@ def connect_db():
 
 def authorize_user(username, password):
     connection = connect_db()
+    
     try:
         with connection.cursor() as cursor:
             cursor.execute(

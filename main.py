@@ -133,12 +133,13 @@ class Application:
             font=("Arial", 20, "bold"),
         ).pack(anchor="w")
         self.create_feed_placeholder()
-
+        
         ttk.Button(
             self.root,
             text="Назад",
             command=self.show_login,
         ).pack(anchor="e", padx=25, pady=15)
+
 
     #заглушка
     def create_feed_placeholder(self):
